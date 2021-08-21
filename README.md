@@ -14,3 +14,9 @@ config.iniに下記を記載する
 [line]
 token = 取得したLine Notifyアクセストークン（書き換える）
 ```
+
+### 3.ファイル実行
+```
+python keychronK1_stock_getter.py
+```
+実行すると、LINE Notifyから通知が飛びます。
