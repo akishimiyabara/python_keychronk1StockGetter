@@ -16,6 +16,9 @@ TARGET_CLASS='main_content_result_item'
 def main():
   line.notify_sender(stock_getter(URL1, PRODUCT_NAME1) + '\n' + stock_getter(URL2, PRODUCT_NAME2))
 
+def lambda_handler(event, lambda_context):
+  main()
+
 def stock_getter(url, product_name):
   req = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
   html = urllib.request.urlopen(req)
@@ -24,7 +27,7 @@ def stock_getter(url, product_name):
   topics = topics_index.find_all('li')
   for topic in topics:
     if topic.find('h2').text == product_name:
-      return topic.find('h2').text + ' ' + topic.find('button').text
+      return '【' + topic.find('h2').text + '】' + topic.find('button').text
 
 if __name__ == "__main__":
   main()
